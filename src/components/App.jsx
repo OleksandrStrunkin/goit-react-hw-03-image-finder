@@ -19,12 +19,14 @@ class App extends Component {
     imgUrl: '',
   };
 
-  onSubmit = ({ value }) => {
-    this.setState({
-      value,
-      items: [],
-      page: 1,
-    });
+  onSubmit = searchText => {
+    if (searchText !== '') {
+      if (searchText !== this.state.value) {
+        this.setState({ value: searchText, page: 1, items: [] });
+      } else {
+        this.setState({ value: searchText });
+      }
+    }
   };
 
   componentDidUpdate(prevProps, prevState) {
